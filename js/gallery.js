@@ -73,7 +73,7 @@ const images = [
            <img
              class="gallery-image"
              src="${img.preview}"
-             data-source="large-image.jpg"
+             data-source="${img.original}"
              alt="${img.description}"
            />
          </a>
@@ -89,10 +89,11 @@ const images = [
       return
     }
 
-    const link = event.target.closest('.gallery-link');
+    const link = event.target.closest('.gallery-link [data-source]');
+
     if (link) {
       const instance = basicLightbox.create(`
-        <img src="${link.href}" alt="${event.target.alt}">
+        <img src="${link.dataset.source}" alt="${event.target.alt}">
       `);
       instance.show();
     }
